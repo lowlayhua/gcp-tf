@@ -15,5 +15,8 @@ HPA will adjust the number of replicas (via the deployment) to maintain an avera
 
 **Note: Vertical Pod Autoscaling should not be used alongside Horizontal Pod Autoscaling on CPU or memory. Both autoscalers will try to respond to changes in demand on the same metrics and conflict. However, VPA on CPU or memory can be used with HPA on custom metrics to avoid overlap.**
 
-## 
+
+# Vertical Pod Autoscaling
+- Check if Vertical Pod Autoscaling has already been enabled in scaling-demo ?
+- `gcloud container clusters describe scaling-demo | grep ^verticalPodAutoscaling -A 1`
 # Monitoring GKE cost
