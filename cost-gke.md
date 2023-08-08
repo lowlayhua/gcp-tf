@@ -13,7 +13,7 @@ HPA will adjust the number of replicas (via the deployment) to maintain an avera
 - `kubectl autoscale deployment php-apache --cpu-percent=50 --min=1 --max=10`
 - `kubectl get hpa`
 
-** Note: Vertical Pod Autoscaling should not be used alongside Horizontal Pod Autoscaling on CPU or memory. Both autoscalers will try to respond to changes in demand on the same metrics and conflict. However, VPA on CPU or memory can be used with HPA on custom metrics to avoid overlap.
+**Note: Vertical Pod Autoscaling should not be used alongside Horizontal Pod Autoscaling on CPU or memory. Both autoscalers will try to respond to changes in demand on the same metrics and conflict. However, VPA on CPU or memory can be used with HPA on custom metrics to avoid overlap.**
 
 ## 
 # Monitoring GKE cost
