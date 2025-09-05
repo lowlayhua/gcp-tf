@@ -1,0 +1,22 @@
+# Perform IP and credential rotation on GKE cluster
+It is a secure practice to do so regularly to reduce credential lifetimes. 
+While there are separate commands to rotate the serving IP and credentials, rotating credentials additionally rotates the IP as well.
+- `gcloud container clusters update $my_cluster --zone $my_zone --start-credential-rotation`
+- Enter Y to continue.
+- Leave the Cloud Shell open until the operation is complete.
+- After the command completes in the Cloud Shell the cluster will initiate the process to update each of the nodes. That process can take up to 15 minutes for your cluster. The process also automatically updates the kubeconfig entry for the current user.
+
+- The cluster master now temporarily serves the new IP address in addition to the original address.
+* Note: You must update the kubeconfig file on any other system that uses kubectl or API to access the master before completing the rotation process to avoid losing access.
+
+To complete the credential and IP rotation tasks execute the following command:
+- `gcloud container clusters update $my_cluster --zone $my_zone --complete-credential-rotation`
+
+- This finalizes the rotation processes and removes the original cluster ip-address.
+
+* Note: If the credential rotation fails to complete and returns an error message, run the below command.
+- `gcloud container clusters upgrade $my_cluster     --node-pool=default-pool   --zone $my_zone`
+- Enter Y to continue.
+
+- After the cluster has successfully upgraded, re-execute the following command:
+- `gcloud container clusters update $my_cluster --zone $my_zone --complete-credential-rotation`
